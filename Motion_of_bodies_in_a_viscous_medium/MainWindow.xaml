@@ -1,0 +1,556 @@
+﻿<Window x:Class="Motion_of_bodies_in_a_viscous_medium.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Motion_of_bodies_in_a_viscous_medium"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
+        fw:AcrylicWindow.Enabled="True" 
+        fw:AcrylicWindow.AcrylicWindowStyle="None"
+        fw:AcrylicWindow.TintOpacity="0.5"
+        fw:AcrylicWindow.NoiseOpacity="0"
+        BorderThickness="0"
+        BorderBrush="{x:Null}" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        MaxWidth="1080" 
+        MaxHeight="600" 
+        MinWidth="1080" 
+        MinHeight="600" 
+        Width="1080" 
+        Height="600"
+        xmlns:viewModel="clr-namespace:Motion_of_bodies_in_a_viscous_medium.MVVM.ViewModel"
+        >
+
+    <!--#region Storyboard -->
+    <Window.Resources>
+
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Frame">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1040"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="830"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Frame">
+                <EasingDoubleKeyFrame KeyTime="0" Value="830"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1040"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element1Open">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element1Close">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="40"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element2Open">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element2Close">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="40"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element3Open">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element3">
+                <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element3Close">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element3">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="40"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element4Open">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element4">
+                <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element4Close">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element4">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="40"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element5Open">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element5">
+                <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="Element5Close">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element5">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="40"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="UserOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element6">
+                <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="UserClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element6">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="40"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="SettingsOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element7">
+                <EasingDoubleKeyFrame KeyTime="0" Value="40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="SettingsClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="Element7">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="40"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="AppTitleOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AppTitle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="240"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="AppTitleClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AppTitle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="240"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="BackButtonOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="BackButton">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="BackButtonClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="BackButton">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
+    <!--#endregion-->
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="570"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="830"/>
+        </Grid.ColumnDefinitions>
+
+        <!--#region Заголовок -->
+        <Grid Grid.Row="0" Grid.Column="1" Background="White" Width="830" MouseDown="Grid_MouseDown">
+            <Grid HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <Button Padding="0" Background="#00FFFFFF" Foreground="Black" BorderThickness="0" ForceCursor="true" Cursor="Arrow" Margin="0" Click="Minimize_Click">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#DADADA" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#00FFFFFF" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                        <materialDesign:PackIcon Kind="WindowMinimize"/>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Padding="0" Background="#00FFFFFF" Foreground="Black" BorderThickness="0" ForceCursor="true" Cursor="Arrow" Margin="0" Click="Exit_Click">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#DADADA" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#00FFFFFF" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                        <materialDesign:PackIcon Kind="WindowClose"/>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Основна часть -->
+        <Grid x:Name="Frame" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" HorizontalAlignment="Right" Width="1040">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="510"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" x:Name="Title" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 10" FontFamily="Segoe UI Historic" FontSize="25"/>
+            <Frame x:Name="NavigateFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Margin="5"/>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Навигация -->
+        <Grid x:Name="Navigation" Grid.Row="1" Grid.Column="0" Margin="0 0 0 0" Width="250" HorizontalAlignment="Left">
+
+            <Grid.RowDefinitions>
+                <!-- Меню бургер -->
+                <RowDefinition Height="40"/>
+                <!-- Верхнее меню -->
+                <RowDefinition Height="240"/>
+                <!-- Отступ -->
+                <RowDefinition Height="10"/>
+                <!-- Нижнее меню -->
+                <RowDefinition Height="230"/>
+                <!-- Настройки -->
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <!--#region Кнопка Бургер -->
+            <Grid Grid.Row="0" Height="40" Width="40" HorizontalAlignment="Left">
+                <Button Style="{DynamicResource BurgerButton}" ForceCursor="true" Cursor="Arrow"  Click="MenuOpen_Click">
+                    <Grid Height="25" Width="25">
+                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                    </Grid>
+                </Button>
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region Верхнее меню -->
+            <Grid Grid.Row="1">
+
+                <ListView HorizontalAlignment="Left" Name="MainView" >
+
+                    <!--#region Element 1 -->
+                    <ListViewItem x:Name="Element1" Height="40" Width="40" Padding="0" PreviewMouseDown="PageSelected">
+                        <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow" >
+                            <Grid Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Иконка -->
+                                <Grid Grid.Column="0">
+                                    <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow">
+                                        <Grid Height="25" Width="25">
+                                            <StackPanel Orientation="Horizontal" Margin="-2.5 0 0 0">
+                                                <Grid x:Name="Marker1" Background="#007DFF" Margin="0 0 0 0" Height="20" Width="2.5"/>
+                                                <materialDesign:PackIcon Kind="Home" Width="25" Height="25"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                                <!-- Текст -->
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="Главная" Foreground="Black" Margin="20 0 0 0" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                    <!--#endregion-->
+
+                    <!--#region Element 2 -->
+                    <ListViewItem x:Name="Element2" Height="40" Width="40" Padding="0" PreviewMouseDown="PageSelected" >
+                        <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow" >
+                            <Grid Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Иконка -->
+                                <Grid Grid.Column="0">
+                                    <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow">
+                                        <Grid Height="25" Width="25">
+                                            <StackPanel Orientation="Horizontal" Margin="-2.5 0 0 0">
+                                                <Grid x:Name="Marker2" Background="#007DFF" Margin="0 0 0 0" Height="20" Width="2.5"/>
+                                                <Grid Height="18" Width="20" Margin="3 0 0 0">
+                                                    <Image Source="{StaticResource projectinDrawingImage}"  Margin="0 0 0 0"/>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                                <!-- Текст -->
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="Задание 1" Foreground="Black" Margin="20 0 0 0" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                    <!--#endregion-->
+
+                    <!--#region Element 3 -->
+                    <ListViewItem x:Name="Element3" Height="40" Width="40" Padding="0" PreviewMouseDown="PageSelected">
+                        <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow" >
+                            <Grid Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Иконка -->
+                                <Grid Grid.Column="0">
+                                    <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow">
+                                        <Grid Height="25" Width="25">
+                                            <StackPanel Orientation="Horizontal" Margin="-2.5 0 0 0">
+                                                <Grid x:Name="Marker3" Background="#007DFF" Margin="0 0 0 0" Height="20" Width="2.5"/>
+                                                <Grid Height="18" Width="20" Margin="3 0 0 0">
+                                                    <Image Source="{StaticResource projectinDrawingImage}"  Margin="0 0 0 0"/>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                                <!-- Текст -->
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="Задание 2" Foreground="Black" Margin="20 0 0 0" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                    <!--#endregion-->
+
+                    <!--#region Element 4 -->
+                    <ListViewItem x:Name="Element4" Height="40" Width="40" Padding="0" PreviewMouseDown="PageSelected">
+                        <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow" >
+                            <Grid Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Иконка -->
+                                <Grid Grid.Column="0">
+                                    <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow">
+                                        <Grid Height="25" Width="25">
+                                            <StackPanel Orientation="Horizontal" Margin="-2.5 0 0 0">
+                                                <Grid x:Name="Marker4" Background="#007DFF" Margin="0 0 0 0" Height="20" Width="2.5"/>
+                                                <Grid Height="18" Width="20" Margin="3 0 0 0">
+                                                    <Image Source="{StaticResource projectinDrawingImage}"  Margin="0 0 0 0"/>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                                <!-- Текст -->
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="Задание 3" Foreground="Black" Margin="20 0 0 0" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                    <!--#endregion-->
+
+                    <!--#region Element 5 -->
+                    <ListViewItem x:Name="Element5" Height="40" Width="40" Padding="0" PreviewMouseDown="PageSelected">
+                        <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow" >
+                            <Grid Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Иконка -->
+                                <Grid Grid.Column="0">
+                                    <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow">
+                                        <Grid Height="25" Width="25">
+                                            <StackPanel Orientation="Horizontal" Margin="-2.5 0 0 0">
+                                                <Grid x:Name="Marker5" Background="#007DFF" Margin="0 0 0 0" Height="20" Width="2.5"/>
+                                                <Grid Height="18" Width="20" Margin="3 0 0 0">
+                                                    <Image Source="{StaticResource projectinDrawingImage}"  Margin="0 0 0 0"/>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                                <!-- Текст -->
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="Задание 4" Foreground="Black" Margin="20 0 0 0" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                    <!--#endregion-->
+                </ListView>
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region Нижнее меню -->
+            <Grid Grid.Row="3">
+                <ListView HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <ListViewItem x:Name="Element6" Height="40" Width="40" Padding="0" PreviewMouseDown="PageSelected" >
+                        <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow" >
+                            <Grid Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Иконка -->
+                                <Grid Grid.Column="0">
+                                    <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow">
+                                        <Grid Height="25" Width="25">
+                                            <StackPanel Orientation="Horizontal" Margin="-2.5 0 0 0">
+                                                <Grid x:Name="UserMarker" Background="#007DFF" Margin="0 0 0 0" Height="20" Width="2.5"/>
+                                                <Grid Height="18" Width="20" Margin="3 0 0 0">
+                                                    <Image Source="{StaticResource userDrawingImage}" Height="20" Width="25" Margin="0 0 0 0" />
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+                                <!-- Текст -->
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="Разработчик" Foreground="Black" Margin="20 0 0 0" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                </ListView>
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region Настройки -->
+            <!--
+            <Grid Grid.Row="4">
+                <ListView HorizontalAlignment="Left">
+                    <ListViewItem x:Name="Element7"  Height="40" Width="40" Padding="0" PreviewMouseDown="PageSelected">
+                        <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow" >
+                            <Grid Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+            -->
+                                <!-- Иконка -->
+            <!--
+                                <Grid Grid.Column="0">
+                                    <Button Style="{DynamicResource ElementButton}" ForceCursor="true" Cursor="Arrow">
+                                        <Grid Height="25" Width="25">
+                                            <StackPanel Orientation="Horizontal" Margin="-2.5 0 0 0">
+                                                <Grid x:Name="SettingsMarker" Background="#007DFF" Margin="0 0 0 0" Height="20" Width="2.5"/>
+                                                <materialDesign:PackIcon Kind="Settings" Width="25" Height="25"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Button>
+                                </Grid>
+            -->
+                                <!-- Текст -->
+            <!--
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="Параметры" Foreground="Black" Margin="20 0 0 0" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Button>
+                    </ListViewItem>
+                </ListView>
+            </Grid>
+            -->
+            <!--#endregion-->
+
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Часть над навигацией -->
+        <Grid Grid.Row="0" Grid.Column="0" MouseDown="Grid_MouseDown" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <!--Кнопка Назад-->
+            <Button x:Name="BackButton" Grid.Column="0" Background="#00FFFFFF" Foreground="Black" BorderBrush="#00FFFFFF" BorderThickness="0" Margin="0"  ForceCursor="true" Cursor="Arrow" Width="0" Click="BackButton_Click">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#DADADA" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="Button.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#00FFFFFF" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    Duration="0"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+                <materialDesign:PackIcon Kind="ArrowLeft"/>
+            </Button>
+            <!-- Title Приложения -->
+            <TextBlock x:Name="AppTitle" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Text="Motion of bodies in a viscous medium"  VerticalAlignment="Center" TextDecorations="{x:Null}" FontFamily="Segoe UI Symbol" Width="240" FontSize="11"/>
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+</Window>
